@@ -63,10 +63,6 @@ defmodule JsonWebToken.Algorithm.Rsa do
 
   # http://tools.ietf.org/html/rfc3447#section-7.2
   defp validate_message_size(signing_input) do
-    message = Util.validate_present(signing_input)
-    large_message(byte_size(message) > @message_bytes_max)
+    Util.validate_present(signing_input)
   end
-
-  defp large_message(true), do: raise "Message too large"
-  defp large_message(_), do: :ok
 end
